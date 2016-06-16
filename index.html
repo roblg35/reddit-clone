@@ -2,123 +2,121 @@
 <html ng-app="redditApp">
   <head>
     <meta charset="utf-8">
-   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="main.css">
   </head>
   <body ng-controller="hipster">
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">HIpSter ReDDit</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav ">
-        <li ng-model="submitForm" ng-click="togglepostsubmit = !togglepostsubmit"><a href="#">&#8224; SuBmIT POst</a></li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search" ng-model="search">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">HIpSter ReDDit</a>
         </div>
-      </form>
-      <ul class="nav navbar-nav">
-     
-	   <select class="form-control" id="dropdown" ng-model="sort" ng-init="sort='rating'">
-    	<option value="rating">Search By Votes</option>
-    	<option value="date">Search By Date</option>
-    	<option value="title">Search By Title</option>
-   	   </select>    
-  </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-<form novalidate class="simple-form" ng-submit="update(data)">
-<div class="container" ng-hide="!togglepostsubmit">
-  <h1>&#8880;Enter New Post&#x22B1;</h1>
-  <div class="input-group input-group-lg">
-  <span class="input-group-addon" id="sizing-addon2">&#8880;Title&#x22B1;</span>
-  <input type="text" class="form-control" placeholder="Title" ng-model="data.title" aria-describedby="sizing-addon2">
-  </div>
-  <br>
-  <div class="input-group input-group-lg">
-  <span class="input-group-addon" id="sizing-addon2">&#8880;Author&#x22B1;</span>
-  <input ng-model="data.author" type="text" class="form-control" placeholder="Author" aria-describedby="sizing-addon2">
-</div>
-<br>
-<div class="input-group input-group-lg">
-  <span class="input-group-addon" id="sizing-addon2">&#8880;Image URL&#x22B1;</span>
-  <input ng-model="data.picture" type="text" class="form-control" placeholder="Image URL" aria-describedby="sizing-addon2">
-</div>
-<br>
-<div class="input-group input-group-lg">
-  <span class="input-group-addon" id="sizing-addon2">&#8880;Description&#x22B1;</span>
-  <input ng-model="data.post" type="text" class="form-control" placeholder="Description" aria-describedby="sizing-addon2">
-</div>
-  <br>
-  <button type="submit" class="btn btn-info">&#8880;Submit&#x22B1;</button>
-  <hr>
-</div>
-</form>
-
-<div class="container" ng-repeat="data in posts | orderBy: '-' + sort | filter:search">
- <div class="row">
-  <div class="col-md-3">
-   <img ng-src="{{data.picture}}" class="img-thumbnail" alt="Cinque Terre">
-   </div>
-  <div class="info col-md-9">
-    <h4>By {{data.author}}</h4>
-    <h2>{{data.title}}</h2>
-    <button ng-model-="button" ng-click="data.rating= data.rating + 1;">&#x21E7;</button> 
-    <button ng-model-="button" ng-click="data.rating= data.rating - 1;">&#x21E9;</button> 
-    <h2 ng-class="{green: data.rating > 0, red: data.rating < 0}" id="rating" ng-model-="button">{{data.rating}}</h2>
-    <p>{{data.post}}</p> 
-    <h5>{{data.date | date:'medium'}} </h5>
-    <h5 ng-click="togglepost = !togglepost">Comments</h5>
-    <h5 ng-click="togglepostcomment = !togglepostcomment">Add Comment</h5>
-   </div>
-  </div>  
-  <form novalidate class="simple-form" ng-submit="makeComment(data)">
-   <div class="row" ng-hide="!togglepostcomment">
-    <div class="col-md-3">
-   </div>
-   <div class="postComment col-md-9">
-     <h1>Enter Comment</h1>
-     <div class="input-group input-group-lg">
-  		<span class="input-group-addon" id="sizing-addon2">&#8880;Author&#x22B1;</span>
- 		<input type="text" ng-model="newComment.name" class="form-control" placeholder="Author" aria-describedby="sizing-addon2">
-  	 </div>
-  	 <br>
-  	 <div class="input-group input-group-lg">
-  		<span class="input-group-addon" id="sizing-addon2">&#8880;Comment&#x22B1;</span>
- 		<input type="text" ng-model="newComment.post" class="form-control" placeholder="Comment" aria-describedby="sizing-addon2">
-  	 </div>
-  	 <br>
-  	   <button type="submit" class="btn btn-info">&#8880;Submit&#x22B1;</button>
-   </div>
-  </div>
-  </form>
-    <br>
-    <div class="row" ng-hide="!togglepost" ng-repeat="comment in data.comments">
-   <div class="col-md-3">
-   </div>
-   <div class="comments col-md-9">
-     <h1>Comments</h1>
-     <h4>{{comment.name}}:</h4>
-     <h4>"{{comment.post}}"</h4>
-   </div>
-  </div> 
-  <hr>
-  <br>
-</div>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-  </body>
-</html>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav ">
+            <li ng-model="submitForm" ng-click="togglepostsubmit = !togglepostsubmit"><a href="#">&#8224; SuBmIT POst</a></li>
+          </ul>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search" ng-model="search">
+            </div>
+          </form>
+          <ul class="nav navbar-nav">
+            
+            <select class="form-control" id="dropdown" ng-model="sort" ng-init="sort='rating'">
+              <option value="rating">Search By Votes</option>
+              <option value="date">Search By Date</option>
+              <option value="title">Search By Title</option>
+            </select>
+          </ul>
+          </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+        <form novalidate class="simple-form" ng-submit="update(data)">
+          <div class="container" ng-hide="!togglepostsubmit">
+            <h1>&#8880;Enter New Post&#x22B1;</h1>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon2">&#8880;Title&#x22B1;</span>
+              <input type="text" class="form-control" placeholder="Title" ng-model="data.title" aria-describedby="sizing-addon2">
+            </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon2">&#8880;Author&#x22B1;</span>
+              <input ng-model="data.author" type="text" class="form-control" placeholder="Author" aria-describedby="sizing-addon2">
+            </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon2">&#8880;Image URL&#x22B1;</span>
+              <input ng-model="data.picture" type="text" class="form-control" placeholder="Image URL" aria-describedby="sizing-addon2">
+            </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon2">&#8880;Description&#x22B1;</span>
+              <input ng-model="data.post" type="text" class="form-control" placeholder="Description" aria-describedby="sizing-addon2">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-info">&#8880;Submit&#x22B1;</button>
+            <hr>
+          </div>
+        </form>
+        <div class="container" ng-repeat="data in posts | orderBy: '-' + sort | filter:search">
+          <div class="row">
+            <div class="col-md-3">
+              <img ng-src="{{data.picture}}" class="img-thumbnail" alt="Cinque Terre">
+            </div>
+            <div class="info col-md-9">
+              <h4>By {{data.author}}</h4>
+              <h2>{{data.title}}</h2>
+              <button ng-model-="button" ng-click="data.rating= data.rating + 1;">&#x21E7;</button>
+              <button ng-model-="button" ng-click="data.rating= data.rating - 1;">&#x21E9;</button>
+              <h2 ng-class="{green: data.rating > 0, red: data.rating < 0}" id="rating" ng-model-="button">{{data.rating}}</h2>
+              <p>{{data.post}}</p>
+              <h5>{{data.date | date:'medium'}} </h5>
+              <h5 ng-click="togglepost = !togglepost">Comments</h5>
+              <h5 ng-click="togglepostcomment = !togglepostcomment">Add Comment</h5>
+            </div>
+          </div>
+          <form novalidate class="simple-form" ng-submit="makeComment(data)">
+            <div class="row" ng-hide="!togglepostcomment">
+              <div class="col-md-3">
+              </div>
+              <div class="postComment col-md-9">
+                <h1>Enter Comment</h1>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon" id="sizing-addon2">&#8880;Author&#x22B1;</span>
+                  <input type="text" ng-model="newComment.name" class="form-control" placeholder="Author" aria-describedby="sizing-addon2">
+                </div>
+                <br>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon" id="sizing-addon2">&#8880;Comment&#x22B1;</span>
+                  <input type="text" ng-model="newComment.post" class="form-control" placeholder="Comment" aria-describedby="sizing-addon2">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-info">&#8880;Submit&#x22B1;</button>
+              </div>
+            </div>
+          </form>
+          <br>
+          <div class="row" ng-hide="!togglepost" ng-repeat="comment in data.comments">
+            <div class="col-md-3">
+            </div>
+            <div class="comments col-md-9">
+              <h1>Comments</h1>
+              <h4>{{comment.name}}:</h4>
+              <h4>"{{comment.post}}"</h4>
+            </div>
+          </div>
+          <hr>
+          <br>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+      </body>
+    </html>
