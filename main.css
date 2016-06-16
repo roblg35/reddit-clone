@@ -1,0 +1,79 @@
+body  {
+    background-image: url("http://widewallpaper.info/wp-content/uploads/2016/02/Hipster-Wallpaper-28.jpg");
+}
+
+img {
+	height: 350px;
+	width: 250px;
+	margin-top: 15px;
+/*	margin-bottom: -10px;
+*/}
+
+.info{
+	margin-top: 15px;
+	background-color: white;
+	opacity: .85;
+
+
+}
+
+#rating{
+	margin-left: 10px;
+}
+
+.info h4{
+	float: right;	
+}
+
+.info h2{
+	float: left;
+}
+.info p{
+	float: left;
+}
+
+
+.info h5{
+	float: left;
+	border-right: solid;
+	margin-right: 10px;
+	padding-right: 10px;
+	}
+
+.info button{
+	margin-top: 25px;
+	margin-left: 10px;	
+	border:none;
+	background-color: none;
+	opacity: .85; 
+	float:left;
+}
+
+
+#dropdown{
+	margin-top: 8px;
+}
+
+.red{ 
+color:red;
+ }
+
+ .green{
+ 	color:green;
+ }
+.black{
+	color:black;
+}
+
+.comments{
+	background-color: white;
+	opacity: .85;
+}
+.comments h4{
+	float: left;
+	margin-right: 10px;
+}
+
+.fixed{
+	float: left;
+}
